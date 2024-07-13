@@ -1,0 +1,14 @@
+{
+  "name": "node-red-contrib-mtconnect",
+  "version": "1.0.0",
+  "description": "Custom nodes for MTconnect integration in Node-RED",
+  "dependencies": {
+    "xml2js": "^0.4.23"
+  },
+  "node-red": {
+    "nodes": {
+      "mtconnect-receive": "mtconnect-receive.js",
+      "mtconnect-rules": "mtconnect-rules.js"
+    }
+  }
+}

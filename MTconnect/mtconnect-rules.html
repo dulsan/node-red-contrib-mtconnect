@@ -1,0 +1,104 @@
+<script type="text/javascript">
+    RED.nodes.registerType('mtconnect-rules', {
+        category: 'MTconnect',
+        color: '#a6bbcf',
+        defaults: {
+            name: { value: "" },
+            rules: { value: [{ t: "move", p: "", pt: "msg", to: "", tot: "msg" }] }
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "font-awesome/fa-filter",
+        label: function () {
+            return this.name || "MTconnect Rules";
+        },
+        oneditprepare: function () {
+            $("#node-input-rule-container").editableList({
+                addItem: function (container, i, rule) {
+                    rule = rule || { t: "move", p: "", pt: "msg", to: "", tot: "msg" };
+                    
+                    var ruleContainer = $('<div/>').addClass('node-input-rule-container').appendTo(container);
+                    
+                    var row1 = $('<div/>').addClass('node-input-rule-row').appendTo(ruleContainer);
+                    $('<span/>').text('Move').appendTo(row1);
+                    $('<span/>').addClass('node-input-rule-pt').text('msg.').appendTo(row1);
+                    $('<input/>').addClass('node-input-rule-p')
+                        .attr('type', 'text')
+                        .attr('placeholder', 'property')
+                        .appendTo(row1);
+                    $('<span/>').text('to').appendTo(row1);
+                    $('<input/>').addClass('node-input-rule-to')
+                        .attr('type', 'text')
+                        .attr('placeholder', 'property')
+                        .appendTo(row1);
+
+                    // Set initial values
+                    row1.find('.node-input-rule-p').val(rule.p);
+                    row1.find('.node-input-rule-to').val(rule.to);
+                },
+                removable: true,
+                sortable: true
+            });
+
+            if (this.rules) {
+                for (var i = 0; i < this.rules.length; i++) {
+                    var rule = this.rules[i];
+                    $("#node-input-rule-container").editableList('addItem', rule);
+                }
+            }
+        },
+        oneditsave: function () {
+            var rules = [];
+            $("#node-input-rule-container").editableList('items').each(function (i) {
+                var rule = $(this);
+                var r = {
+                    t: "move",
+                    p: rule.find(".node-input-rule-p").val(),
+                    pt: "msg",
+                    to: rule.find(".node-input-rule-to").val(),
+                    tot: "msg"
+                };
+                rules.push(r);
+            });
+            this.rules = rules;
+        }
+    });
+</script>
+
+<style>
+    .node-input-rule-container {
+        margin-bottom: 10px;
+    }
+    .node-input-rule-row {
+        display: flex;
+        align-items: center; /* Align items horizontally in the center */
+        margin-bottom: 5px;
+    }
+    .node-input-rule-row span,
+    .node-input-rule-row input {
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+    .node-input-rule-p,
+    .node-input-rule-to {
+        width: 200px; /* Set a fixed width for the input boxes */
+    }
+</style>
+
+<script type="text/html" data-template-name="mtconnect-rules">
+    <div class="form-row"> 
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label> 
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row" style="margin-bottom: 0px;">
+        <label><i class="fa fa-list"></i> Rules</label>
+    </div>
+    <div class="form-row node-input-rule-container-row">
+        <ol id="node-input-rule-container"></ol>
+    </div>
+</script>
+
+<script type="text/html" data-help-name="mtconnect-rules">
+    <p>A node that applies rules to move properties within the message.</p>
+    <p>This node allows you to add rules that move one msg property to another msg property.</p>
+</script>

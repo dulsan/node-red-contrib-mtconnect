@@ -1,0 +1,38 @@
+<script type="text/javascript">
+    RED.nodes.registerType('mtconnect-receive',{
+        category: 'MTconnect',
+        color: '#a6bbcf',
+        defaults: {
+            name: {value:""},
+            url: {value:"", required:true},
+            injectTime: {value:0, required:true, validate:RED.validators.number()}
+        },
+        inputs:0,
+        outputs:1,
+        icon: "file.png",
+        label: function() {
+            return this.name||"MTconnect Receive";
+        }
+    });
+</script>
+
+<script type="text/html" data-template-name="mtconnect-receive">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-url"><i class="fa fa-globe"></i> URL link</label>
+        <input type="text" id="node-input-url" placeholder="https://example.com/mtconnect">
+    </div>
+    <div class="form-row">
+        <label for="node-input-injectTime"><i class="fa fa-clock-o"></i> Inject time (seconds)</label>
+        <input type="number" id="node-input-injectTime" placeholder="Inject time in seconds">
+    </div>
+</script>
+
+<script type="text/html" data-help-name="mtconnect-receive">
+    <p>A node that receives MTconnect XML data and converts it to JSON.</p>
+    <p>This node performs an HTTP request to the specified URL, parses the XML response into JSON, and outputs the result.</p>
+    <p>The node is self-injecting based on the specified inject time.</p>
+</script>
