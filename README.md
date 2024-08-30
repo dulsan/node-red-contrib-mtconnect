@@ -16,7 +16,7 @@ I have also provided an example flow for anyone who needs it.
 | Abhik Banerjee  | Swinburne University     |
 | Ashish Manchanda | Swinburne University     |
 
-
+(NOTE: THE GITHUB VERSION IS NOT THE LATEST VERSION, USE NPM INSTEAD)
 ## Nodes
 
 ### MTconnect Receive
