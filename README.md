@@ -13,15 +13,9 @@ I have also provided an example flow for anyone who needs it.
 
 |                 |                          |
 | -------------   |-------------             |
-| Sam McNaughton  | DIAS/DMTC Ltd            |
-| Steve Dowey     | Sutton Tools             |
 | Abhik Banerjee  | Swinburne University     |
 | Ashish Manchanda | Swinburne University     |
-| Liam Bradley    | Swinburne University     |
-| John Palinic    | BMP Precision Engineering|
-| David Peric     | BMP Precision Engineering|
 
-Thank you to all that helped me develop these nodes!
 
 ## Nodes
 
